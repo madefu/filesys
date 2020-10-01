@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Parent-M1</title>
+  
+	<script th:src="@{/jslib/jquery-3.5.1.min.js}"></script>
+ </head>
+ <body>
+ 	<script type="text/javascript">
+ 		//set readCookie
+ 		$.get("/cookie/getCookie",function(data,status){
+ 			alert("Data: " + data + "\nStatus: " + status);
+ 		});
+ 		//set setCookie
+ 		$.get("/cookie/getCookie",function(data,status){
+ 			alert("Data: " + data + "\nStatus: " + status);
+ 		});
+ 		
+ 	</script>
+	<iframe src="">	
+	</iframe>
+ </body>
+</html>

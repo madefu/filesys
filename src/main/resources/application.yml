@@ -5,16 +5,14 @@ spring:
     check-template-location: true
     enabled: true
     encoding: 'UTF-8' # Template files encoding.
-    excluded-view-names: '# Comma-separated list of view names that should be excluded
-      from resolution.'
-    mode: 'HTML5 # Template mode to be applied to templates. See also StandardTemplateModeHandlers.'
-    prefix: 'classpath:/templates/ # Prefix that gets prepended to view names when
-      building a URL.'
+    excluded-view-names: '# Comma-separated list of view names that should be excluded from resolution.'
+    mode: 'HTML' # Template mode to be applied to templates. See also StandardTemplateModeHandlers.'
+    #在resources下使用templates可是不用设置prefix，会使用默认配置，就默认在resources的templates目录
+    #prefix: 'classpath:/templates/ # Prefix that gets prepended to view names when building a URL.'
     reactive:
-      max-chunk-size: '# Maximum size of data buffers used for writing to the response,
-        in bytes.'
-      media-types: '# Media types supported by the view technology.'
+      max-chunk-size: 0B # Maximum size of data buffers used for writing to the response,in bytes.'
+      #media-types: '# Media types supported by the view technology.'
     servlet:
-      content-type: 'text/html # Content-Type value written to HTTP responses.'
-    suffix: '.html # Suffix that gets appended to view names when building a URL.'
-    view-names: '# Comma-separated list of view names that can be resolved.ss'
+      content-type: 'text/html' #'text/html # Content-Type value written to HTTP responses.'
+    suffix: '.html' #' Suffix that gets appended to view names when building a URL.'
+    #view-names: '# Comma-separated list of view names that can be resolved.ss'
