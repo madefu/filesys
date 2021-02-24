@@ -8,13 +8,13 @@ import java.util.function.Predicate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackages= {"com.mdf","com.mdfnacos"})
 public class FileSysApplication {
 
 	public static void main(String[] args) {
-		
-	
 		
 		SpringApplication.run(FileSysApplication.class, args);
 	}

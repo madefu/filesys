@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -25,6 +27,8 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class CookieController {
 
+	private static final String COOKIE_NAME="cock";
+	
 	@GetMapping("/set")
 	public Mono<String> mono(HttpServletRequest req, HttpServletResponse  rep) {
 		
@@ -32,16 +36,29 @@ public class CookieController {
 	}
 	
 	@GetMapping("/page/m1")
-    public String index(Model model) {
+    public String index(Model model,HttpServletRequest req, HttpServletResponse  rep) {
         model.addAttribute("now", LocalDateTime.now());
+        setCookie(req, rep);
         return "m1";
     }
+	
+	@RequestMapping("/get")
+	@ResponseBody
+	public String getCookie(HttpServletRequest req, HttpServletResponse  rep) {
+		Cookie[] cocks = req.getCookies();
+		for(Cookie cock : cocks) {
+			if(cock.getName().indexOf(COOKIE_NAME)>-1) {
+				return cock.getValue();
+			}
+		}
+		return "";
+	}
 	
 	private boolean setCookie(HttpServletRequest req, HttpServletResponse  rep) {
 		String serverName = req.getServerName();
 		log.info("当前域名：{}",serverName);
 		
-		Cookie cookie = new Cookie("cookie","111");
+		Cookie cookie = new Cookie(COOKIE_NAME,"111");
 		cookie.setHttpOnly(true);
 		cookie.setMaxAge(7 * 24 * 60 * 60);//7days
 		/**
